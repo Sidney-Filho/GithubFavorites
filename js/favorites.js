@@ -3,7 +3,7 @@
 export class Favorites {
   constructor(root) {
     this.root = document.querySelector(root);
-    this.load()
+    this.load();
   }
 
   load() {
@@ -21,7 +21,16 @@ export class Favorites {
         followers: "12000",
       },
     ];
-   }
+  }
+
+  delete(user) {
+    //Higher-order functions (map, filter, find, reduce)
+    const filteredEntries = this.entries.filter(
+      (entry) => entry.login !== user.login
+    );
+
+    console.log(filteredEntries);
+  }
 }
 
 //classe que vai criar a visualização e eventos do html
@@ -38,18 +47,26 @@ export class FavoritesView extends Favorites {
     this.removeAllTr();
 
     this.entries.forEach((user) => {
-      const row = this.createRow()
+      const row = this.createRow();
 
-      row.querySelector('.user img').src = `https://github.com/${user.login}.png`
-      row.querySelector('.user img').alt = `Imagem de ${user.name}`
-      row.querySelector('.user p').textContent = user.name
-      row.querySelector('.user span').textContent = user.login
-      row.querySelector('.repositories').textContent = user.public_repos
-      row.querySelector('.followers').textContent = user.followers
+      row.querySelector(
+        ".user img"
+      ).src = `https://github.com/${user.login}.png`;
+      row.querySelector(".user img").alt = `Imagem de ${user.name}`;
+      row.querySelector(".user p").textContent = user.name;
+      row.querySelector(".user span").textContent = user.login;
+      row.querySelector(".repositories").textContent = user.public_repos;
+      row.querySelector(".followers").textContent = user.followers;
 
-      this.tbody.append(row)
+      row.querySelector(".remove").onclick = () => {
+        const isOk = confirm("Tem certeza que deseja deletar essa linha?");
+        if (isOk) {
+          this.delete(user);
+        }
+      };
+
+      this.tbody.append(row);
     });
-
   }
 
   createRow() {
