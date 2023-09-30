@@ -1,2 +1,5 @@
-# GithubFavorites
-Um aplicativo web que adiciona os seus perfis favoritos do GIthub a uma lista, feito em Javascript.
+<h1>Projeto Github Favorites</h1>
+<p>Esse app faz com que seja possivel você adicionar a uma lista os seus usuários favoritos no Github, funciona diretamente com a Api do Github</p>
+
+## Tecnologias 
+Html,Css, JavaScript
